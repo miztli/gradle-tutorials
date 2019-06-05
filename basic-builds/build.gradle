@@ -12,6 +12,9 @@ plugins {
 
     // Apply the application plugin to add support for building an application
     id 'application'
+
+    // Apply base plugin to zip files
+    id 'base'
 }
 
 repositories {
@@ -28,11 +31,20 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+// Will copy from dir src... and into dist dir
 task copy(type: Copy, 
           group: "Custom", 
           description: "Copies files from sources to dest dir") {
   from "src/main/java/basic/builds"
   into "dist"
+}
+
+// Will create a zip file under build/dist dir
+task zipSources(type: Zip,
+                group: "Archive",
+                description: "Pack sources in a zip file") {
+  from "src/main/java/basic/builds"
+  setArchiveName "dist/sources.zip"
 }
 
 // Define the main class for the application
