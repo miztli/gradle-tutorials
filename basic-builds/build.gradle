@@ -28,5 +28,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+task copy(type: Copy, 
+          group: "Custom", 
+          description: "Copies files from sources to dest dir") {
+  from "src/main/java/basic/builds"
+  into "dist"
+}
+
 // Define the main class for the application
 mainClassName = 'basic.builds.App'
