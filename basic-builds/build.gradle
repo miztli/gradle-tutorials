@@ -47,5 +47,32 @@ task zipSources(type: Zip,
   setArchiveName "dist/sources.zip"
 }
 
+// task order
+task hello {
+
+    println 'do it then!' // configuration phase
+
+    doLast {
+        println 'goodbye world' // attached to the end of task's action chain
+    }
+
+    println 'do it now!' // configuration phase
+
+    doFirst {
+        println 'Hello world!' // attached to the beginning of task's action chain
+
+    }
+}
+
+task createBuildManifest {
+    description 'Create manifest.json for SAP CCv2'
+    group 'Deployment'
+    doLast {
+        //whatever your code. Recommend using any private methods or private tasks
+        def name = 'Miztli'
+        println "Hello ${name}"
+    }
+}
+
 // Define the main class for the application
 mainClassName = 'basic.builds.App'
